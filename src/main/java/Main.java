@@ -23,14 +23,14 @@ public class Main {
         Matrix<RGBPixel> picture = PPMIO.readPPM("nt-P3.ppm");
         Encoder encoder = new Encoder();
         encoder.encode(picture);
-        System.out.println("Luminance matrix");
-        printMatrix(encoder.getLuminanceMatrix());
-        System.out.println("Blue chrominance matrix");
-        printMatrix(encoder.getBlueChrominanceMatrix());
-        System.out.println("Red chrominance matrix");
-        printMatrix(encoder.getRedChrominanceMatrix());
+//        System.out.println("Luminance matrix");
+//        printMatrix(encoder.getLuminanceMatrix());
+//        System.out.println("Blue chrominance matrix");
+//        printMatrix(encoder.getBlueChrominanceMatrix());
+//        System.out.println("Red chrominance matrix");
+//        printMatrix(encoder.getRedChrominanceMatrix());
         Decoder decoder = new Decoder();
-        Matrix<RGBPixel> compressedPicture = decoder.decode(encoder.getLuminanceMatrix(),encoder.getBlueChrominanceMatrix(),encoder.getRedChrominanceMatrix());
+        Matrix<RGBPixel> compressedPicture = decoder.decode(encoder.getLuminanceMatrix(),encoder.getBlueChrominanceMatrix(),encoder.getRedChrominanceMatrix(),encoder.getQuantizationMatrix());
         PPMIO.writePPM(compressedPicture,"output.ppm");
     }
 }
